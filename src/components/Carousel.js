@@ -2,9 +2,9 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
-import { catalogGetProducts} from '../store/actions'
+import { catalogGetProducts, webcamTakeScreenshot, faceDetection } from '../store/actions'
 
-const Carousel = ({ products, tags, count, current, onChange }) =>  
+const Carousel = ({ products, tags, current, screenshot, onChange }) =>  
     <div className="products" onClick={onChange}>
         {renderProduct(products[current])}
     </div>
@@ -19,14 +19,18 @@ const mapStateToProps = state => {
     return { 
         products: state.app.products,
         tags: state.app.tags,
-        count: state.app.count,
-        current: state.app.current
+        current: state.app.current,
+        screenshot: state.app.lastScreenshot
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChange: () => dispatch(catalogGetProducts())
+        onChange: () => {
+            dispatch(catalogGetProducts())
+            dispatch(webcamTakeScreenshot())
+            dispatch(faceDetection())
+        }
     }
 }
 

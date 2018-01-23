@@ -2,19 +2,13 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 
-import { faceDetection } from '../store/actions'
+import { webcamReady, webcamTakeScreenshot, faceDetection } from '../store/actions'
 import Webcam from './Webcam'
 
 class VideoStream extends React.Component {
     
     componentDidMount() {
-        setInterval(this.takeScreenshot, this.props.interval || 20000)
-    }
-
-
-    takeScreenshot = () => {
-        const screenshot = this.webcam.getScreenshot()
-        this.props.onTakeScreenshot(screenshot)
+        setInterval(this.props.takeScreenshot, this.props.interval || 20000)
     }
 
     render() {
@@ -24,7 +18,7 @@ class VideoStream extends React.Component {
                     width={this.props.width}
                     height={this.props.height}
                     audio={false}
-                    ref={node => this.webcam = node} />
+                    ref={node => this.props.camReady(node)} />
 
             )
         }
@@ -40,14 +34,19 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = dispatch => {
     return {
-        onTakeScreenshot: (data) => dispatch(faceDetection(data))
+        camReady: (webcam) => dispatch(webcamReady(webcam)),
+        takeScreenshot: () => {
+            dispatch(webcamTakeScreenshot())
+            dispatch(faceDetection())
+        }
     }
 }
 
 VideoStream.propTypes = {
     user: PropTypes.object,
     screenshot: PropTypes.string,
-    onTakeScreenshot: PropTypes.func.isRequired
+    camReady: PropTypes.func.isRequired,
+    takeScreenshot: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (VideoStream)

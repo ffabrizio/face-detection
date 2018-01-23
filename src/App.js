@@ -18,7 +18,7 @@ export default () =>
     <Carousel />
 
     <div className="controls">
-      <VideoStream interval={10000} width={320} height={180} />
+      <VideoStream interval={10000} width={250} height={190} />
       <Log />
     </div>
   </div>

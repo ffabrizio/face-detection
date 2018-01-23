@@ -11,7 +11,7 @@ const defaultState = {
   log: 'Welcome to the experiment ...',
   current: 0,
   products,
-  count: products.length
+  webcam: {}
 }
 
 const getProfile = (data) => {
@@ -28,11 +28,23 @@ const getProfile = (data) => {
 }
 
 export const faceDetectionReducer = handleActions({
+    WEBCAM_READY: (state, action) => {
+        return { 
+            ...state,
+            webcam: action.payload
+          }
+    },
+    WEBCAM_TAKE_SCREENSHOT: (state, action) => {
+        const screenShot = state.webcam.getScreenshot()
+        return { 
+            ...state, 
+            lastScreenshot: screenShot
+          }
+    },
     FACE_DETECTION: (state, action) => {
         return { 
             ...state, 
             loading: true,
-            lastScreenshot: action.payload,
             log: 'Detecting ...'
           }
     },
