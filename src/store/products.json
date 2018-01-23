@@ -1,0 +1,38 @@
+[
+  {
+    "id":  "001",
+    "name": "Product one",
+    "url": "https://wallpaperscraft.com/image/planet_light_spots_space_86643_1920x1080.jpg",
+    "tags": ["planet","space","universe"]
+  },
+  {
+    "id": "002",
+    "name": "Product two",
+    "url": "http://jonvilma.com/images/space-1.jpg",
+    "tags": ["space","universe"]
+  },
+  {
+    "id": "003",
+    "name": "Product three",
+    "url": "https://i.ytimg.com/vi/Un5SEJ8MyPc/maxresdefault.jpg",
+    "tags": ["universe"]
+  },
+  {
+    "id": "004",
+    "name": "Product four",
+    "url": "https://az616578.vo.msecnd.net/files/2016/09/04/63608606489643277157510112_outer-space_00428098.jpg",
+    "tags": ["outer","space","universe"]
+  },
+  {
+    "id": "005",
+    "name": "Product five",
+    "url": "https://www.nasa.gov/sites/default/files/thumbnails/image/rad2.jpg",
+    "tags":  ["body","starmap"]
+  },
+  {
+    "id": "006",
+    "name": "Product six",
+    "url": "https://wallpapercave.com/wp/b6tiVp9.jpg",
+    "tags": ["universe","starmap"]
+  }
+]
